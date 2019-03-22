@@ -14,7 +14,7 @@ public class DaoDemo {
             PlayerDAO playerDAO = new PlayerDAO(conn);
 
             // Create
-            /*
+            /**/
             Player playerCreate = new Player();
             playerCreate.setNumber(42);
             playerCreate.setFirstName("froilan");
@@ -25,7 +25,7 @@ public class DaoDemo {
             playerCreate.setGoals(10);
             playerCreate.setAssists(15);
 
-            playerDAO.create(playerCreate);
+            System.out.println(playerDAO.create(playerCreate));
             /**/
 
 
@@ -45,7 +45,7 @@ public class DaoDemo {
             /**/
 
             // DELETE
-            /**/
+            /*
             playerDAO.delete(41);
             /**/
         }catch (SQLException e){

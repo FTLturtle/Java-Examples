@@ -19,7 +19,7 @@ public class UpdatableResultSetDemo {
         {
             rs.absolute(11);
 
-            rs.updateInt("goals", 2);
+            rs.updateInt("goals", 4);
             rs.updateRow();
 
             System.out.println("Record Updated Successfully");

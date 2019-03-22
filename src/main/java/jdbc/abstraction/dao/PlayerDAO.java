@@ -25,7 +25,7 @@ public class PlayerDAO extends DAO<Player> {
     @Override
     public Player findById(int id) {
         Player player = null;
-        try(PreparedStatement pstmt = DBUtil.getConnection(DBType.MYSQLDB).prepareStatement(GET_ONE);){
+        try(PreparedStatement pstmt = DBUtil.getConnection(DBType.MYSQLDB).prepareStatement(GET_ONE)){
             pstmt.setInt(1, id);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()){
@@ -55,7 +55,7 @@ public class PlayerDAO extends DAO<Player> {
     @Override
     public Player update(Player dto) {
         Player player = null;
-        try(PreparedStatement pstmt = this.connection.prepareStatement(UPDATE);){
+        try(PreparedStatement pstmt = this.connection.prepareStatement(UPDATE)){
             pstmt.setInt(1, dto.getNumber());
             pstmt.setString(2, dto.getFirstName());
             pstmt.setString(3, dto.getLastName());
@@ -65,6 +65,7 @@ public class PlayerDAO extends DAO<Player> {
             pstmt.setInt(7, dto.getGoals());
             pstmt.setInt(8, dto.getAssists());
             pstmt.setInt(9, dto.getId());
+            pstmt.executeUpdate();
             player = this.findById(dto.getId());
         }catch (SQLException e){
             DBUtil.showErrorMessage(e);
@@ -74,7 +75,8 @@ public class PlayerDAO extends DAO<Player> {
 
     @Override
     public Player create(Player dto) {
-        try(PreparedStatement pstmt = this.connection.prepareStatement(INSERT);){
+        int key = -1;
+        try(PreparedStatement pstmt = this.connection.prepareStatement(INSERT, PreparedStatement.RETURN_GENERATED_KEYS)){
             pstmt.setInt(1, dto.getNumber());
             pstmt.setString(2, dto.getFirstName());
             pstmt.setString(3, dto.getLastName());
@@ -85,16 +87,20 @@ public class PlayerDAO extends DAO<Player> {
             pstmt.setInt(8, dto.getAssists());
             pstmt.executeUpdate();
 
-            //TODO: get newly created auto_generated id from created record and return it below
+            ResultSet rs = pstmt.getGeneratedKeys();
+
+            if (rs != null && rs.next()) {
+                key = rs.getInt(1);
+            }
         }catch(SQLException e){
             DBUtil.showErrorMessage(e);
         }
-        return null;
+        return this.findById(key);
     }
 
     @Override
     public void delete(int id) {
-        try(PreparedStatement pstmt = this.connection.prepareStatement(DELETE);){
+        try(PreparedStatement pstmt = this.connection.prepareStatement(DELETE)){
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         }catch(SQLException e){

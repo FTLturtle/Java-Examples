@@ -16,16 +16,16 @@ public class ExceptionDemo {
 
         try{
 
-            conn = DBUtil.getConnection(DBType.ORADB);
+            conn = DBUtil.getConnection(DBType.MYSQLDB);
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery("select * from nation");
+            rs = stmt.executeQuery("select * from student;");
             rs.last();
             System.out.println("Total No. of Rows:" + rs.getRow());
 
         } catch (SQLException e) {
 
-            System.err.println(e);
-            //DBUtil.showErrorMessage(e);
+            //System.err.println(e);
+            DBUtil.showErrorMessage(e);
 
         } finally {
 

@@ -14,7 +14,7 @@ public class PreparedStatementInsertDemo {
 
         Connection conn = DBUtil.getConnection(DBType.MYSQLDB);
 
-        int id;
+        //int id;
         int number;
         String first_name;
         String last_name;

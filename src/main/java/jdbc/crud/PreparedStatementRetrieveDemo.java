@@ -43,6 +43,8 @@ public class PreparedStatementRetrieveDemo {
             System.out.println("Total Players: " + rs.getRow());
             /**/
 
+
+            /**/
             prepareStatement(pstmt, 5, "Midfielder");
             System.out.println("------------------------------------------------------------------------------------------");
             prepareStatement(pstmt, 5, "Forward");
