@@ -13,7 +13,7 @@ public class BookService {
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();
 
-    public Book createBook(Long id, String title, String description, Float unitCost, String isbn, Integer nbOfPage){
+    public Book createBook(Long id, String title, String description, Float unitCost, String isbn, Integer nbOfPage) {
 
         Book book = new Book();
         book.setId(id);
@@ -24,13 +24,13 @@ public class BookService {
         book.setNbOfPage(nbOfPage);
 
         tx.begin();
-            em.persist(book);
+        em.persist(book);
         tx.commit();
 
         return book;
     }
 
-    public Book createBook(Book book){
+    public Book createBook(Book book) {
         tx.begin();
         em.persist(book);
         tx.commit();
@@ -41,16 +41,16 @@ public class BookService {
         return em.find(Book.class, id);
     }
 
-    public void removeBook(Long id){
+    public void removeBook(Long id) {
         Book book = em.find(Book.class, id);
-        if(book != null){
+        if (book != null) {
             tx.begin();
             em.remove(book);
             tx.commit();
         }
     }
 
-    public void removeBook(Book book){
+    public void removeBook(Book book) {
         Book bookToBeDeleted = em.merge(book);
         em.remove(bookToBeDeleted);
 
@@ -61,7 +61,7 @@ public class BookService {
 
     public Book raiseUnitCost(Long id, Float raise) {
         Book book = em.find(Book.class, id);
-        if(book != null){
+        if (book != null) {
             tx.begin();
             book.setUnitCost(book.getUnitCost() + raise);
             tx.commit();

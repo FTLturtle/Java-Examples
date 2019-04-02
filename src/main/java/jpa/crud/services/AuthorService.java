@@ -16,7 +16,7 @@ public class AuthorService {
     private EntityManager em = emf.createEntityManager();
     private EntityTransaction tx = em.getTransaction();
 
-    public Author createAuthork(String firstName, String lastName, String bio, Date dateOfBirth, Language language){
+    public Author createAuthork(String firstName, String lastName, String bio, Date dateOfBirth, Language language) {
 
         Author author = new Author();
         author.setFirstName(firstName);
@@ -32,7 +32,7 @@ public class AuthorService {
         return author;
     }
 
-    public Author createBook(Author book){
+    public Author createBook(Author book) {
         tx.begin();
         em.persist(book);
         tx.commit();
@@ -43,16 +43,16 @@ public class AuthorService {
         return em.find(Author.class, id);
     }
 
-    public void removeBook(Long id){
+    public void removeBook(Long id) {
         Author book = em.find(Author.class, id);
-        if(book != null){
+        if (book != null) {
             tx.begin();
             em.remove(book);
             tx.commit();
         }
     }
 
-    public void removeBook(Author book){
+    public void removeBook(Author book) {
         Author bookToBeDeleted = em.merge(book);
         em.remove(bookToBeDeleted);
 

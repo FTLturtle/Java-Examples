@@ -14,9 +14,10 @@ public class Book {
     private String isbn;
     private Integer nbOfPage;
 
-    public Book(){};
+    public Book() {
+    }
 
-    public Book(Long id, String title, String description, Float unitCost, String isbn, Integer nbOfPage){
+    public Book(Long id, String title, String description, Float unitCost, String isbn, Integer nbOfPage) {
         this.id = id;
         this.title = title;
         this.description = description;

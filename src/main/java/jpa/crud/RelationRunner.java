@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class RelationRunner {
 
-    public static void main(String ...args){
+    public static void main(String... args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("publishing");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -31,7 +31,7 @@ public class RelationRunner {
 
         System.out.println("CD Persistend : " + cd);
 
-        cd  = service.findCD(cd.getId());
+        cd = service.findCD(cd.getId());
 
         System.out.println("Found CD : " + cd);
 

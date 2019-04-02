@@ -29,7 +29,8 @@ public class Musician {
     @Column(name = "prefered_instrument")
     protected String preferedInstrument;
 
-    public Musician() {}
+    public Musician() {
+    }
 
     public Musician(String firstName, String lastName) {
         this.firstName = firstName;

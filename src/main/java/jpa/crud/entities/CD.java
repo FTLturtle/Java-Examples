@@ -31,7 +31,8 @@ public class CD {
     //@JoinColumn(name = "cd_fk")
     private Set<Musician> musicians = new HashSet<>();
 
-    public CD() {}
+    public CD() {
+    }
 
     public CD(String title, String description, Float unitCost, Float totalDuration, String genre, Set<Musician> musicians) {
         this.title = title;

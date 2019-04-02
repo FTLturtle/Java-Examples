@@ -16,7 +16,7 @@ public class CDService {
         this.tx = em.getTransaction();
     }
 
-    public CD createCD(String title, String description, Float unitCost, Float totalDuration, String genre, Set<Musician> musicians){
+    public CD createCD(String title, String description, Float unitCost, Float totalDuration, String genre, Set<Musician> musicians) {
 
         CD cd = new CD();
         cd.setTitle(title);
@@ -33,7 +33,7 @@ public class CDService {
         return cd;
     }
 
-    public CD createCD(CD cd){
+    public CD createCD(CD cd) {
         tx.begin();
         em.persist(cd);
         tx.commit();
@@ -44,16 +44,16 @@ public class CDService {
         return em.find(CD.class, id);
     }
 
-    public void removeCD(Long id){
+    public void removeCD(Long id) {
         CD cd = em.find(CD.class, id);
-        if(cd != null){
+        if (cd != null) {
             tx.begin();
             em.remove(cd);
             tx.commit();
         }
     }
 
-    public void removeCD(CD cd){
+    public void removeCD(CD cd) {
         CD cdToBeDeleted = em.merge(cd);
         tx.begin();
         em.remove(cdToBeDeleted);
@@ -65,7 +65,7 @@ public class CDService {
 
     public CD raiseUnitCost(Long id, Float raise) {
         CD cd = em.find(CD.class, id);
-        if(cd != null){
+        if (cd != null) {
             tx.begin();
             cd.setUnitCost(cd.getUnitCost() + raise);
             tx.commit();

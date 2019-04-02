@@ -8,17 +8,17 @@ import java.time.Period;
 import java.util.Date;
 
 @Entity
-@Table(name= "T_AUTHOR")
+@Table(name = "T_AUTHOR")
 public class Author {
     @Id
     @GeneratedValue()
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name="first_name", length=50)
+    @Column(name = "first_name", length = 50)
     private String firstName;
 
-    @Column(name="last_name", length=50)
+    @Column(name = "last_name", length = 50)
     private String lastName;
 
     @Column(length = 5000)
@@ -34,7 +34,8 @@ public class Author {
     //@Enumerated(EnumType.STRING)
     private Language language;
 
-    public Author(){}
+    public Author() {
+    }
 
     public Author(String firstName, String lastName, String bio, Date dateOfBirth, Language language) {
         this.firstName = firstName;
